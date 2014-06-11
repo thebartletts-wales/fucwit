@@ -1,0 +1,39 @@
+#!/bin/bash
+# FEWSG Unified Code Wi-Fi Tracker - fucwit
+# By using this code you agree to abide by the supplied License
+# contained in the Readme.txt file
+
+
+echo "
+ ______________________________________________________________________
+|                                                                      |
+| Welcome to fucwit				          	       |
+| All necessary packages will now be imported                          |
+|______________________________________________________________________|
+"
+sleep 3
+#Set current path in config
+sd=$(cd $(dirname "$0"); pwd)
+
+apt-get install -y tshark macchanger netcat
+
+cat > /usr/bin/fucwit << EOL
+#!/bin/bash
+$sd/fucwit
+EOL
+chmod +x /usr/bin/fucwit
+
+echo " ________________________________________________________________________"
+echo "|                                                                        |"
+echo "| fucwit installed successfully  			                 |"
+echo "|________________________________________________________________________|"
+
+sleep 1
+echo ""
+echo ""
+echo "Please wait whilst the fucwit programme runs..."
+echo ""
+echo ""
+sleep 3
+
+fucwit
