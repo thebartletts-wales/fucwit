@@ -15,7 +15,7 @@ sleep 3
 #Set current path in config
 sd=$(cd $(dirname "$0"); pwd)
 
-apt-get install -y tshark macchanger netcat
+apt-get install -y tshark macchanger netcat aircrack-ng
 
 cat > /usr/bin/fucwit << EOL
 #!/bin/bash
