@@ -1,0 +1,15 @@
+#!/bin/bash
+# FEWSG Unified Code Wi-Fi Tracker - fucwit
+# By using this code you agree to abide by the supplied License
+# contained in the Readme.txt file
+
+
+airmon-ng start wlan0| grep "monitor mode on" 
+
+if [ -z $location ]; then
+        	echo -n "[-] Enter description (e.g.location): "
+        	read location
+fi
+
+tshark -q -S -l -i wlan0 -R 'wlan.fc.type_subtype eq 4' -T fields -e wlan.sa -e wlan_mgt.ssid -e radiotap.dbm_antsignal -e frame.time -E separator=, -E quote=d |sed -u "s/^/\",\",\"$location\",/" >> ./output.txt &
+
